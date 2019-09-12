@@ -10,8 +10,8 @@ mgnt_passwd: admin
 region_name: RegionOne
 memcached_servers: 192.168.99.221,192.168.99.222,192.168.99.223
 
-neutron_name: cinder
-neutron_password: cinder
+neutron_name: neutron
+neutron_password: neutron
 rabbitmq_user: openstack
 rabbitmq_password: openstack
 
