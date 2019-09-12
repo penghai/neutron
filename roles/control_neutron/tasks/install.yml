@@ -1,0 +1,16 @@
+- name: Install the packages
+  yum:
+    name: 
+      - openstack-neutron
+      - openstack-neutron-ml2
+      - openstack-neutron-linuxbridge
+      - ebtables
+    state: present
+
+#- name: config nova.conf
+#  template:
+#    src: nova.conf
+#    dest: /etc/nova/nova.conf
+#    owner: root
+#    group: nova
+#    mode: "0640"

@@ -1,0 +1,18 @@
+
+root_db_user: root
+root_db_password: root
+
+neutron_db_name: neutron
+neutron_db_user: neutron
+neutron_db_password: neutron
+mgnt_vip: 192.168.99.220
+mgnt_passwd: admin
+region_name: RegionOne
+memcached_servers: 192.168.99.221,192.168.99.222,192.168.99.223
+
+neutron_name: cinder
+neutron_password: cinder
+rabbitmq_user: openstack
+rabbitmq_password: openstack
+
+secret_uuid: 8f05bc1d-326f-4d2e-ad87-ca2efeee3ac2
