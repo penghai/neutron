@@ -1,0 +1,33 @@
+[DEFAULT]
+[l2pop]
+[ml2]
+type_drivers = {{type_drivers}}
+tenant_network_types = {% for info in tenant_network_type %}{{info}},{% endfor %}
+
+mechanism_drivers = linuxbridge,l2population
+extension_drivers = port_security
+[ml2_type_flat]
+[ml2_type_geneve]
+[ml2_type_gre]
+
+[ml2_type_vlan]
+{% for info in tenant_network_type %}
+{% if info == 'vlan' %}
+network_vlan_ranges = {{physical_network}}:{{network_vlan_ranges}}
+{% endif %}
+{% endfor %}
+[ml2_type_vxlan]
+{% for info in tenant_network_type %}
+{% if info == 'vxlan' %}
+vni_ranges = {{vni_ranges}}
+{% endif %}
+{% endfor %}
+
+[securitygroup]
+enable_security_group = true
+enable_ipset = true
+
+{{ansible_eth2.ipv4.address}}
+
+
+['ansible_' + {{overlay_network_interface}}]['ipv4']['address']
