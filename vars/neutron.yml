@@ -22,7 +22,7 @@ nova_password: nova
 
 
 #(list value)local,flat,vlan,gre,vxlan,geneve 
-type_drivers: vlan 
+type_drivers: flat,vlan,vxlan 
 tenant_network_type: [vlan,vxlan]
 
 #<physical_network>:<vlan_min>:<vlan_max>
