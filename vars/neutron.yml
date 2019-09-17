@@ -36,4 +36,6 @@ vni_ranges: 10000:20000
 
 #mapping physical network names to the agent's node-specific physical network interfaces to be used for flat and VLAN networks
 physical_interface: eth1
-overlay_network_interface: eth3
+overlay_network_interface: eth2
+
+metadata_proxy_shared_secret: aa947319e6e3 
