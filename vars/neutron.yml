@@ -23,7 +23,7 @@ nova_password: nova
 
 #(list value)local,flat,vlan,gre,vxlan,geneve 
 type_drivers: flat,vlan,vxlan 
-tenant_network_type: [vlan,vxlan]
+tenant_network_type: [vlan,vxlan,flat]
 
 #<physical_network>:<vlan_min>:<vlan_max>
 #<physical_network>: specifying physical_network names usable for VLAN provider and tenant networks

@@ -1,11 +1,22 @@
-- name: Start the Compute services and configure them to start when the system boots
+- name: Ensure your Linux operating system kernel supports network bridge filters 
+  sysctl:
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    state: present
+    sysctl_set: yes
+    reload: yes
+  with_items:
+    - { name: 'net.bridge.bridge-nf-call-iptables',value: '1' }
+    - { name: 'net.bridge.bridge-nf-call-ip6tables',value: '1' }
+
+- name: Start the Networking services and configure them to start when the system boots
   service:
     name: "{{item}}"
     state: restarted
     enabled: yes
   with_items:
-    - openstack-nova-api.service
-    - openstack-nova-consoleauth
-    - openstack-nova-scheduler.service
-    - openstack-nova-conductor.service
-    - openstack-nova-novncproxy.service
+    - neutron-server.service
+    - neutron-linuxbridge-agent.service
+    - neutron-dhcp-agent.service
+    - neutron-l3-agent.service
+    - neutron-metadata-agent.service

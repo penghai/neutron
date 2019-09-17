@@ -57,6 +57,12 @@
   when: endpoint_check.rc != 0
   run_once: true
 
-#- name: Populate the database
-#  shell: su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
-#  run_once: true
+- name: The Networking service initialization scripts expect a symbolic link pointing to the ML2 plug-in configuration file.
+  file:
+    src: /etc/neutron/plugins/ml2/ml2_conf.ini
+    dest: /etc/neutron/plugin.ini
+    state: link
+
+- name: Populate the database
+  shell: su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+  run_once: true

@@ -13,7 +13,7 @@
 - name: config neutron.conf
   template:
     src: neutron.conf
-    dest: /etc/nova/neutron.conf
+    dest: /etc/neutron/neutron.conf
     owner: root
     group: neutron
     mode: "0640"
