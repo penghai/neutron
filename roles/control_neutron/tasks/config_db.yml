@@ -1,16 +1,16 @@
 - name: Select {{neutron_db_name}} database
-  shell: mysql -u{{root_db_user}} -p{{root_db_password}} -e "select * from information_schema.SCHEMATA where schema_name='{{neutron_db_name}}';"|grep -w {{neutron_db_name}}
+  shell: mysql -u{{mariadb_user}} -p{{mariadb_password}} -e "select * from information_schema.SCHEMATA where schema_name='{{neutron_db_name}}';"|grep -w {{neutron_db_name}}
   ignore_errors: yes
   register: info
   run_once: true
 
 - name: Create the {{neutron_db_name}} database
-  shell: mysql -u{{root_db_user}} -p{{root_db_password}} -e "CREATE DATABASE {{neutron_db_name}};"
+  shell: mysql -u{{mariadb_user}} -p{{mariadb_password}} -e "CREATE DATABASE {{neutron_db_name}};"
   when: info.rc != 0
   run_once: true
 
 - name: Grant proper access to the database
-  shell: mysql -u{{root_db_user}} -p{{root_db_password}} -e "GRANT ALL PRIVILEGES ON {{neutron_db_name}}.* TO '{{neutron_db_user}}'@'{{item}}' IDENTIFIED BY '{{neutron_db_password}}';"
+  shell: mysql -u{{mariadb_user}} -p{{mariadb_password}} -e "GRANT ALL PRIVILEGES ON {{neutron_db_name}}.* TO '{{neutron_db_user}}'@'{{item}}' IDENTIFIED BY '{{neutron_db_password}}';"
   with_items:
     - localhost
     - "%"
